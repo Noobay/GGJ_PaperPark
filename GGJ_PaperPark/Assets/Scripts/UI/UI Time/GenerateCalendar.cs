@@ -21,6 +21,8 @@ public class GenerateCalendar : MonoBehaviour {
 		gCal = this;
 	}
 
+
+
 	void GetCurrentMonthInfo()
 	{
 		DateTimeFormatInfo dtfi = DateTimeFormatInfo.CurrentInfo;
