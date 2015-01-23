@@ -46,7 +46,21 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DrawPanel.cs" />
+     <Compile Include="Assets\Scripts\Behaviours\Generators\SignGenerator.cs" />
+     <Compile Include="Assets\Scripts\Behaviours\Sign.cs" />
+     <Compile Include="Assets\Scripts\Constraints\DateConstraint.cs" />
+     <Compile Include="Assets\Scripts\Constraints\DateConstraintManager.cs" />
+     <Compile Include="Assets\Scripts\Constraints\HourConstraint.cs" />
+     <Compile Include="Assets\Scripts\Constraints\HourConstraintManager.cs" />
+     <Compile Include="Assets\Scripts\Constraints\IRangeConstraint.cs" />
+     <Compile Include="Assets\Scripts\Constraints\RangeConstraint.cs" />
+     <Compile Include="Assets\Scripts\Constraints\RangeConstraintManager.cs" />
+     <Compile Include="Assets\Scripts\Constraints\WeeklyConstraint.cs" />
+     <Compile Include="Assets\Scripts\General\ExtensionMethods.cs" />
+     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\Scripts\UI\UI Effects\DrawPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\UI Time\GenerateCalendar.cs" />
+     <Compile Include="Assets\Scripts\UI\UI Time\MakeTime.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
