@@ -5,13 +5,14 @@ using System.Text;
 
 namespace Assets.Scripts.Constraints
 {
-    public class HourConstraintManager : RangeConstraintManager
+    public class WeeklyConstraintManager : RangeConstraintManager
     {
-        public HourConstraintManager()
-            : base(typeof(HourConstraint))
+        public WeeklyConstraintManager()
+            : base(typeof(WeeklyConstraint))
         {
 
         }
+
         public override bool validateUserInputByConstraints()
         {
             throw new NotImplementedException();

@@ -10,13 +10,10 @@ namespace Assets.Scripts.Constraints
         public Type ConstraintType { get; private set; }
         private List<IRangeConstraint> constraintsList { get; set; }
 
-        public RangeConstraintManager(IRangeConstraint first)
+        public RangeConstraintManager(Type constraintType)
         {
-            ConstraintType = first.GetType();
             constraintsList = new List<IRangeConstraint>();
-
-            // Add the first instance of constraint
-            constraintsList.Add(first);
+            this.ConstraintType = constraintType;
         }
 
         public bool tryAddConstraint(IRangeConstraint constraint)

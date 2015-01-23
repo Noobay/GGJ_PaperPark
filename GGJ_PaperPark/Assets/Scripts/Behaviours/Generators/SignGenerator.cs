@@ -17,20 +17,15 @@ namespace Assets.Scripts.Constraints.Generators
         public int maxConstraints;
         public int minConstraintTypes;
         public int maxConstraintTypes;
-        private List<String> rangeConstraintTypes;
 
         void Start()
         {
-            rangeConstraintTypes = new List<String>();
-
-            // TODO Make generic
-            rangeConstraintTypes.Add("WeeklyConstraint");
         }
 
-        public List<RangeConstraintManager> GenerateSignConstraints()
+        public Dictionary<Type, RangeConstraintManager> GenerateSignConstraints()
         {
             // Define number of managers
-            List<RangeConstraintManager> managers = new List<RangeConstraintManager>(Random.Range(minConstraintTypes, maxConstraintTypes));
+            var managers = new Dictionary<Type, RangeConstraintManager>(Random.Range(minConstraintTypes, maxConstraintTypes));
 
             // TODO Create a parser that reads and generates a sign from file data.
             // Get their type by reflection maybe?
@@ -59,45 +54,16 @@ namespace Assets.Scripts.Constraints.Generators
                                           (int)Convert.ChangeType(DayOfWeek.Thursday, DayOfWeek.Thursday.GetTypeCode())));
         }
 
-        private bool AddNewConstraint(List<RangeConstraintManager> managers, IRangeConstraint constraint)
+        private bool AddNewConstraint(Dictionary<Type, RangeConstraintManager> managers, IRangeConstraint constraint)
         {
-            bool result = false;
-
             // First, check if a mananger exists for this type of constraint. If not, create a new one
-            if (!isManagerTypeExisting(managers, constraint.GetType()))
+            if (!managers.ContainsKey(constraint.GetType()))
             {
-                managers.Add(new RangeConstraintManager(constraint));
+                managers.Add(constraint.GetType(), RangeConstraintMangerFactory.getManager(constraint.GetType()));
             }
 
-            // Try adding constraints in all managers
-            for (int i = 0; i < managers.Capacity; i++)
-            {
-                // Once success, break and stop
-                if (managers[i].tryAddConstraint(constraint))
-                {
-                    result = true;
-                    break;
-                }
-            }
-
-            // Return success or failure of adding constraint
-            return result;
-        }
-
-        private bool isManagerTypeExisting(List<RangeConstraintManager> managers, Type constraintType)
-        {
-            bool result = true;
-
-            for (int i = 0; i < managers.Count; i++)
-            {
-                if (managers[i].ConstraintType == constraintType)
-                {
-                    result = false;
-                    break;
-                }
-            }
-
-            return result;
+            // Add new constraint
+            return managers[constraint.GetType()].tryAddConstraint(constraint);
         }
     }
 }

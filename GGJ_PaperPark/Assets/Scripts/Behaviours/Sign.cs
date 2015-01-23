@@ -10,7 +10,7 @@ namespace Assets.Scripts.Constraints
 {
     public class Sign : MonoBehaviour
     {
-        private List<RangeConstraintManager> managers;
+        private Dictionary<Type, RangeConstraintManager> managers;
         public SignGenerator generator; // Configure in Unity Editor an instance of sign generator
 
         // Use this for initialization
