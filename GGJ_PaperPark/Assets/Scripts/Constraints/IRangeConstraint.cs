@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Scripts.Behaviours
+namespace Assets.Scripts.Constraints
 {
     public interface IRangeConstraint
     {

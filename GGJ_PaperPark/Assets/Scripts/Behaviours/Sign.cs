@@ -3,10 +3,10 @@ using System.Collections;
 using Assets.Scripts.General;
 using System;
 using System.Collections.Generic;
-using Assets.Scripts.Behaviours;
-using Assets.Scripts.Behaviours.Generators;
+using Assets.Scripts.Constraints;
+using Assets.Scripts.Constraints.Generators;
 
-namespace Assets.Scripts.Behaviours
+namespace Assets.Scripts.Constraints
 {
     public class Sign : MonoBehaviour
     {

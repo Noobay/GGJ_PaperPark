@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Behaviours;
+﻿using Assets.Scripts.Constraints;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.Behaviours.Generators
+namespace Assets.Scripts.Constraints.Generators
 {
     public class SignGenerator : MonoBehaviour
     {
@@ -55,8 +55,8 @@ namespace Assets.Scripts.Behaviours.Generators
 
             // TODO Static shit. Change in the future
             return new WeeklyConstraint(false,
-                       new RangeAttribute((float)Convert.ChangeType(DayOfWeek.Tuesday, DayOfWeek.Tuesday.GetTypeCode()),
-                                          (float)Convert.ChangeType(DayOfWeek.Thursday, DayOfWeek.Thursday.GetTypeCode())));
+                       new RangeAttribute((int)Convert.ChangeType(DayOfWeek.Tuesday, DayOfWeek.Tuesday.GetTypeCode()),
+                                          (int)Convert.ChangeType(DayOfWeek.Thursday, DayOfWeek.Thursday.GetTypeCode())));
         }
 
         private bool AddNewConstraint(List<RangeConstraintManager> managers, IRangeConstraint constraint)
