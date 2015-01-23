@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Scripts.Behaviours
+namespace Assets.Scripts.Constraints
 {
-    public class RangeConstraintManager
+    public abstract class RangeConstraintManager
     {
         public Type ConstraintType { get; private set; }
+        private List<IRangeConstraint> constraintsList { get; set; }
+
         public RangeConstraintManager(IRangeConstraint first)
         {
             ConstraintType = first.GetType();
@@ -16,8 +18,6 @@ namespace Assets.Scripts.Behaviours
             // Add the first instance of constraint
             constraintsList.Add(first);
         }
-
-        private List<IRangeConstraint> constraintsList { get; set; }
 
         public bool tryAddConstraint(IRangeConstraint constraint)
         {
@@ -51,10 +51,6 @@ namespace Assets.Scripts.Behaviours
             return result;
         }
 
-        //public bool validateUserInputByConstraints()
-        //{
-        //    // TODO Complete
-        //    return false;
-        //}
+        public abstract bool validateUserInputByConstraints();
     }
 }

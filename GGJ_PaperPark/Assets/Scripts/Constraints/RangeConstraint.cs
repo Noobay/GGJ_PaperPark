@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Assets.Scripts.Behaviours
+namespace Assets.Scripts.Constraints
 {
     public abstract class RangeConstraint<T> : IRangeConstraint
     {
