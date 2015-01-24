@@ -3,18 +3,18 @@
 		<ConstraintType>
 		SidewalkConstraint
 		</ConstraintType>
-		<Constraint colorId="1"/>
-		<ConstraintType>
-		WeeklyConstraint
-		</ConstraintType>
-		<Constraint allowed="false">
-			<Range min="2" max="5" />
-		</Constraint>
+		<Constraint colorId="0"/>
 		<ConstraintType>
 		HourConstraint
 		</ConstraintType>
 		<Constraint allowed="true">
-			<Range min="0" max="12" />
+			<Range min="0" max="19" />
+		</Constraint>
+		<ConstraintType>
+		WeeklyConstraint
+		</ConstraintType>
+		<Constraint allowed="true">
+			<Range min="6" max="6" />
 		</Constraint>
 	</ListConstraint>
 </ParkingScene>
