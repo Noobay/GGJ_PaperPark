@@ -18,5 +18,10 @@ namespace Assets.Scripts.Constraints
         {
             return constraintsList.TrueForAll(x => x.isUserInputLegal());
         }
+
+        public int getSidewalkIndex()
+        {
+            return (constraintsList.FirstOrDefault() as SidewalkConstraint).sideColorIndex;
+        }
     }
 }

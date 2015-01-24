@@ -8,7 +8,7 @@ using Assets.Scripts.Constraints.Generators;
 
 namespace Assets.Scripts.Constraints
 {
-    public class Sign : MonoBehaviour
+    public class ParkingScene : MonoBehaviour
     {
         public int level = 1;
 
@@ -26,9 +26,6 @@ namespace Assets.Scripts.Constraints
 
         void Start()
         {
-            // TESTING YAW! KEEP OUT KEEP AWAY FAGGOTS
-            var result1 = getConstraintsToString();
-            var result2 = validateUserInputByConstraints();
         }
 
         public bool validateUserInputByConstraints()
@@ -74,6 +71,11 @@ namespace Assets.Scripts.Constraints
             }
 
             return result;
+        }
+
+        public int getSidewalkIndex()
+        {
+            return (_managers[typeof(SidewalkConstraint)] as SidewalkConstraintManager).getSidewalkIndex();
         }
     }
 }

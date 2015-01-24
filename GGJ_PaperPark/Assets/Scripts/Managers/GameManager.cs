@@ -6,12 +6,12 @@ using Assets.Scripts.Constraints;
 
 public class GameManager : MonoBehaviour {
 
-	Sign sign;
+	ParkingScene sign;
 	public Text signInfo;
 	// Update is called once per frame
 	void Start()
 	{	
-		sign = GetComponent<Sign>();
+		sign = GetComponent<ParkingScene>();
 		signInfo.text = string.Empty;
 
 		List<string> stringConstraints = sign.getConstraintsToString();

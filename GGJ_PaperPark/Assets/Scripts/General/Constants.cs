@@ -41,6 +41,9 @@ namespace Assets.Scripts.General
         public const string SIDEWALK_COLOR_XML = "colorId";
         public const string PARKING_SCENE_XML = "ParkingScene";
 
+        // Others
+        public const int DAYS_IN_WEEK = 7;
+
         // Scenes data path
         public const string XML_SCENE_DIR = @"Assets/ParkingSceneData/";
 
