@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 
 namespace Assets.Scripts.Constraints
 {
+    [XmlRoot(Constants.CONSTRAINT_XML)]
     public class SidewalkConstraintManager
     {
         IConstraint constraint;

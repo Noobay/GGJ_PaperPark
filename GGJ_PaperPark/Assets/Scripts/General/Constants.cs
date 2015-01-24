@@ -18,6 +18,8 @@ namespace Assets.Scripts.General
         public const string MIN_XML = "min";
         public const string MAX_XML = "max";
         public const string ALLOWED_XML = "allowed";
+        public const string HOLYDAY_XML = "holyday";
+        public const string CAR_COLOR_XML = "color";
         public const string SIDEWALK_XML = "Sidewalk";
         public const string PARKING_SCENE_XML = "ParkingScene";
 

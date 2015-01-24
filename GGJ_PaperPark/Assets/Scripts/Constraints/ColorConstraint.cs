@@ -1,17 +1,23 @@
-﻿using System;
+﻿using Assets.Scripts.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Assets.Scripts.Constraints
 {
+    [XmlRoot(Constants.CONSTRAINT_XML)]
     public class ColorConstraint : IConstraint
     {
-        Assets.Scripts.General.Constants.CarColor color;
+        [XmlAttribute(Constants.CAR_COLOR_XML)]
+        string color;
+
+        [XmlAttribute(Constants.ALLOWED_XML)]
+        public bool isConAllowed { get; private set; }
 
         public ColorConstraint(bool isConAllowed, Assets.Scripts.General.Constants.CarColor color)
         {
-            this.color = color;
             this.isConAllowed = isConAllowed;
         }
 
@@ -22,8 +28,6 @@ namespace Assets.Scripts.Constraints
                     (" park in this spot."));
         }
 
-        public bool isConAllowed { get; private set; }
-
         public bool isUserInputLegal(params object[] inputs)
         {
             if (inputs == null || !(inputs[0] is Assets.Scripts.General.Constants.CarColor))
@@ -31,7 +35,10 @@ namespace Assets.Scripts.Constraints
                 return false;
             }
 
-            if(inputs[0].Equals(color))
+            Assets.Scripts.General.Constants.CarColor _carColor = 
+                (Assets.Scripts.General.Constants.CarColor)Enum.Parse(typeof(Assets.Scripts.General.Constants.CarColor), color, true);
+
+            if(inputs[0].Equals(_carColor))
             {
                 return isConAllowed;
             }

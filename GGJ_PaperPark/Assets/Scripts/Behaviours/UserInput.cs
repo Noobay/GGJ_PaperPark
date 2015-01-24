@@ -53,5 +53,10 @@ namespace Assets.Scripts.Constraints
         {
             return sidewalkConstraints[index % sidewalkConstraints.Count];
         }
+
+        internal static bool IsHolidayNow(string p)
+        {
+            return false;
+        }
     }
 }

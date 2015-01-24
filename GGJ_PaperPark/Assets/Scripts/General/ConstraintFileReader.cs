@@ -62,7 +62,6 @@ namespace Assets.Scripts.General
         {
             Type constType;
 
-            // Shitty solution...
             XElement constEle = XNode.ReadFrom(reader) as XElement;
             constType = Type.GetType(Constants.ASSEMBLY_CONSTRAINT_PATH + constEle.Value.Trim('\t', '\r', '\n'));
             XmlSerializer serializer = new XmlSerializer(constType);
