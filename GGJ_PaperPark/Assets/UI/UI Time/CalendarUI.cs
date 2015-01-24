@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Assets.Scripts.General;
 using Assets.Scripts.Generators;
 
-public class CalendarGenerator : MonoBehaviour {
+public class CalendarUI : MonoBehaviour {
 
 	const int NUM_OF_TRIES = 4;
 

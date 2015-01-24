@@ -20,12 +20,12 @@ public class MakeTime : MonoBehaviour {
 
 	public static System.DateTime gameDateTime;
 
-	CalendarGenerator gCalendar;
+	CalendarUI gCalendar;
 
 	void Start()
 	{
 		Initialize();
-		gCalendar = GetComponent<CalendarGenerator>();
+		gCalendar = GetComponent<CalendarUI>();
 		gCalendar.GenerateCurrentMonthInfo();
 	}
 	// Use this for initialization
