@@ -16,9 +16,10 @@ namespace Assets.Scripts.Constraints
         [XmlAttribute(Constants.ALLOWED_XML)]
         public bool isConAllowed { get; private set; }
 
-        public ColorConstraint(bool isConAllowed, Assets.Scripts.General.Constants.CarColor color)
+        public ColorConstraint(bool isConAllowed, Constants.CarColor color)
         {
             this.isConAllowed = isConAllowed;
+            this.color = color.ToString();
         }
 
         public override string ToString()
@@ -30,13 +31,13 @@ namespace Assets.Scripts.Constraints
 
         public bool isUserInputLegal(params object[] inputs)
         {
-            if (inputs == null || !(inputs[0] is Assets.Scripts.General.Constants.CarColor))
+            if (inputs == null || !(inputs[0] is Constants.CarColor))
             {
                 return false;
             }
 
-            Assets.Scripts.General.Constants.CarColor _carColor = 
-                (Assets.Scripts.General.Constants.CarColor)Enum.Parse(typeof(Assets.Scripts.General.Constants.CarColor), color, true);
+            Constants.CarColor _carColor = 
+                (Constants.CarColor)Enum.Parse(typeof(Constants.CarColor), color, true);
 
             if(inputs[0].Equals(_carColor))
             {

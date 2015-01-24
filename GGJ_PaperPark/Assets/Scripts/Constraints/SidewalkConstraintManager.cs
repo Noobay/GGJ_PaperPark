@@ -3,23 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Constraints
 {
-    [XmlRoot(Constants.CONSTRAINT_XML)]
-    public class SidewalkConstraintManager
+    public class SidewalkConstraintManager : ConstraintManager
     {
-        IConstraint constraint;
-        
-        public SidewalkConstraintManager(int index)
-        {
-            constraint = UserInput.GetSidewalkConstraint(index);
+        public SidewalkConstraintManager()
+            : base(typeof(SidewalkConstraint))
+        {   
         }
 
-        public bool validateUserInputByConstraints()
+        public override bool validateUserInputByConstraints()
         {
-            return constraint.isUserInputLegal(UserInput.GetCarColor());
+            return constraintsList.TrueForAll(x => x.isUserInputLegal());
         }
     }
 }

@@ -1,15 +1,19 @@
  <ParkingScene>
  	<ListConstraint>
 		<ConstraintType>
+		SidewalkConstraint
+		</ConstraintType>
+		<Constraint colorId="1"/>
+		<ConstraintType>
 		WeeklyConstraint
 		</ConstraintType>
- 		<Constraint allowed="true">
+ 		<Constraint allowed="false">
  			<Range min="2" max="5" />
  		</Constraint>
 		<ConstraintType>
 		HourConstraint
 		</ConstraintType>
- 		<Constraint allowed="false">
+ 		<Constraint allowed="true">
  			<Range min="0" max="12" />
  		</Constraint>
  	</ListConstraint>

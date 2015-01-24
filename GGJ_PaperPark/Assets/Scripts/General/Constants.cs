@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Constraints;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,6 +9,22 @@ namespace Assets.Scripts.General
 {
     public static class Constants
     {
+        // Privates
+        static List<IConstraint> sidewalkConstraints;
+
+        static Constants()
+        {
+            sidewalkConstraints = new List<IConstraint>();
+            sidewalkConstraints.Add(new ColorConstraint(Utility.GetRandomBoolean(), Constants.CarColor.BLUE));
+            sidewalkConstraints.Add(new ColorConstraint(Utility.GetRandomBoolean(), Constants.CarColor.RED));
+            sidewalkConstraints.Add(new ColorConstraint(Utility.GetRandomBoolean(), Constants.CarColor.GREEN));
+        }
+
+        public static IConstraint GetSidewalkConstraint(int index)
+        {
+            return sidewalkConstraints[index % sidewalkConstraints.Count];
+        }
+
         // XML attributes
 
         // Scene attributes
@@ -21,6 +38,7 @@ namespace Assets.Scripts.General
         public const string HOLIDAY_XML = "holiday";
         public const string CAR_COLOR_XML = "color";
         public const string SIDEWALK_XML = "Sidewalk";
+        public const string SIDEWALK_COLOR_XML = "colorId";
         public const string PARKING_SCENE_XML = "ParkingScene";
 
         // Scenes data path
@@ -35,5 +53,7 @@ namespace Assets.Scripts.General
             RED,
             BLUE
         }
+
+        public const int NUM_OF_SIDEWALK_COLORS = 5;
     }
 }

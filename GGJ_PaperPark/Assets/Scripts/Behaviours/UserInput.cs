@@ -2,19 +2,17 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.General;
 
 namespace Assets.Scripts.Constraints
 {
     public class UserInput : MonoBehaviour
     {
-        static List<IConstraint> sidewalkConstraints;
+        
 
         void Awake()
         {
-            sidewalkConstraints = new List<IConstraint>();
-            sidewalkConstraints.Add(new ColorConstraint(true, General.Constants.CarColor.BLUE));
-            sidewalkConstraints.Add(new ColorConstraint(true, General.Constants.CarColor.RED));
-            sidewalkConstraints.Add(new ColorConstraint(true, General.Constants.CarColor.GREEN));
+
         }
 
         // Use this for initialization
@@ -44,14 +42,9 @@ namespace Assets.Scripts.Constraints
             return 0;
         }
 
-        internal static Assets.Scripts.General.Constants.CarColor GetCarColor()
+        internal static Constants.CarColor GetCarColor()
         {
-            return Assets.Scripts.General.Constants.CarColor.BLUE;
-        }
-
-        internal static IConstraint GetSidewalkConstraint(int index)
-        {
-            return sidewalkConstraints[index % sidewalkConstraints.Count];
+            return Constants.CarColor.BLUE;
         }
 
         internal static bool IsHolidayNow(string p)
