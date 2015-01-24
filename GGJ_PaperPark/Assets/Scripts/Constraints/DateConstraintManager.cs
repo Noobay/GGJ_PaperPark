@@ -5,7 +5,17 @@ using System.Text;
 
 namespace Assets.Scripts.Constraints
 {
-    public class DateConstraintManager
+    public class DateConstraintManager : RangeConstraintManager
     {
+        public DateConstraintManager()
+            : base(typeof(DateConstraint))
+        {
+
+        }
+
+        public override bool validateUserInputByConstraints()
+        {
+            return constraintsList.TrueForAll(x => x.isUserInputLegal(UserInput.GetUserTime()));
+        }
     }
 }

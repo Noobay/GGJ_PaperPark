@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+
 
 public class DrawPanel : MonoBehaviour {
 
@@ -12,27 +12,31 @@ public class DrawPanel : MonoBehaviour {
 	private RectTransform rectTransform;
 
 
+	void Awake()
+	{
+		NameIntPair.ShufflePair (GameData.PavementType,5);
+
+	}
 	void Start()
 	{
-		//DrawOut
 		rectTransform = GetComponent<RectTransform>();
 		basePosition = rectTransform.anchoredPosition;
 	}
 
 
 
-	void DrawOut(float distance)
+	void DrawDown(float distance)
 	{
-		rectTransform.anchoredPosition = new Vector2(DragDrawerBy(Input.GetAxis ("Mouse X")*drawSpeed, drawDistance),basePosition.y);
+		rectTransform.anchoredPosition = new Vector2(basePosition.x, DragDrawerBy(Input.GetAxis ("Mouse Y")*(-drawSpeed),drawDistance));
 	}
 
 	float DragDrawerBy(float by,float maxDraw)
 	{
-		return Mathf.Clamp(by+rectTransform.anchoredPosition.x, basePosition.x, basePosition.x+maxDraw);
+		return Mathf.Clamp(by+rectTransform.anchoredPosition.y, basePosition.y+drawDistance, basePosition.y);
 	}
 	public void DrawDrawer()
 	{
-		DrawOut (drawDistance);
+		DrawDown (drawDistance);
 	}
 
 
