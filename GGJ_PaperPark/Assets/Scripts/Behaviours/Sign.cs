@@ -24,17 +24,6 @@ namespace Assets.Scripts.Constraints
             managers = reader.GenerateSignConstraints();
         }
 
-        // Use this for initialization
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public bool validateUserInputByConstraints()
         {
             List<RangeConstraintManager> _managers = new List < RangeConstraintManager > (managers.Values);
