@@ -1,0 +1,16 @@
+ <ParkingScene>
+ 	<ListConstraint>
+		<ConstraintType>
+		WeeklyConstraint
+		</ConstraintType>
+ 		<Constraint allowed="true">
+ 			<Range min="2" max="5" />
+ 		</Constraint>
+		<ConstraintType>
+		HourConstraint
+		</ConstraintType>
+ 		<Constraint allowed="false">
+ 			<Range min="0" max="12" />
+ 		</Constraint>
+ 	</ListConstraint>
+ </ParkingScene>

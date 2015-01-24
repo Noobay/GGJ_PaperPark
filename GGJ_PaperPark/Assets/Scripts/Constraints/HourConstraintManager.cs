@@ -5,8 +5,16 @@ using System.Text;
 
 namespace Assets.Scripts.Constraints
 {
-    public class HourConstraintManager
+    public class HourConstraintManager : RangeConstraintManager
     {
+        public HourConstraintManager()
+            : base(typeof(HourConstraint))
+        {
+        }
 
+        public override bool validateUserInputByConstraints()
+        {
+            return constraintsList.TrueForAll(x => x.isUserInputLegal(UserInput.GetUserHour()));
+        }
     }
 }

@@ -8,15 +8,12 @@ namespace Assets.Scripts.Constraints
     public abstract class RangeConstraintManager
     {
         public Type ConstraintType { get; private set; }
-        private List<IRangeConstraint> constraintsList { get; set; }
+        protected List<IRangeConstraint> constraintsList { get; private set; }
 
-        public RangeConstraintManager(IRangeConstraint first)
+        public RangeConstraintManager(Type constraintType)
         {
-            ConstraintType = first.GetType();
             constraintsList = new List<IRangeConstraint>();
-
-            // Add the first instance of constraint
-            constraintsList.Add(first);
+            this.ConstraintType = constraintType;
         }
 
         public bool tryAddConstraint(IRangeConstraint constraint)
@@ -52,5 +49,17 @@ namespace Assets.Scripts.Constraints
         }
 
         public abstract bool validateUserInputByConstraints();
+
+        internal List<string> getConstraintsToString()
+        {
+            List<string> result = new List<string>();
+
+            for (int i = 0; i < constraintsList.Count; i++)
+            {
+                result.Add(constraintsList[i].ToString());
+            }
+
+            return result;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,10 @@ namespace Assets.Scripts.Constraints
 {
     public interface IRangeConstraint
     {
-        bool collides(IRangeConstraint other);
-        //bool validateUserInput()
-        RangeAttribute range { get; }
+        GameRangeAttribute range { get; }
         bool isConAllowed { get; }
+
+        bool collides(IRangeConstraint other);
+        bool isUserInputLegal(params object[] inputs);
     }
 }
