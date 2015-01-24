@@ -24,14 +24,14 @@ public class FadeGroup : MonoBehaviour {
 		if(Input.GetKeyDown (KeyCode.I))
 		{
 			smooth=0;
-			BeginFade (fadeCanvas.alpha>=0.8f? 0f : 1f);
+			fadeCanvas.interactable = fadeCanvas.interactable==true ? false : true;
+			BeginFade (fadeCanvas.alpha >=0.8f ? 0f : 1f);
 		}
 		if(fadeMethods != null)
 		{
 			fadeMethods();
 		}
 	}
-
 
 	public void BeginFade(float to)
 	{

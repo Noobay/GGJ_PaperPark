@@ -8,15 +8,21 @@ public class NameIntPair {
 	public int value;
 	
 
-	public NameIntPair(string vName, int vLength)
+	public NameIntPair(string vName, int vValue)
 	{
 		name   = vName;
-		value  = vLength;
+		value  = vValue;
+	}
+
+	public NameIntPair(NameIntPair other)
+	{
+		name   = other.name;
+		value  = other.value;
 	}
 
 	public static void ShufflePair(NameIntPair[] pair,int Range)
 	{
-		int pavementTypesLeft = Range;
+		int typesLeft = Range;
 		int selectedNumber;
 		short i = 0;
 
@@ -28,10 +34,10 @@ public class NameIntPair {
 			selectionList.Add (i);
 		}
 
-		for(i=0; i<pavementTypesLeft; pavementTypesLeft --)
+		for(i=0; i<typesLeft; typesLeft --)
 		{
-			selectedNumber = selectionList[UnityEngine.Random.Range(0, pavementTypesLeft)];
-			pair[pavementTypesLeft-1].value = selectedNumber;
+			selectedNumber = selectionList[UnityEngine.Random.Range(0, typesLeft)];
+			pair[typesLeft-1].value = selectedNumber;
 			selectionList.Remove(selectedNumber);
 	 	}
 	}
