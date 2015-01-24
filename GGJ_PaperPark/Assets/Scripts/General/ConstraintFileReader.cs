@@ -46,7 +46,19 @@ namespace Assets.Scripts.General
                         switch (reader.Name)
                         {
                             case Constants.TYPE_CONSTRAINT_XML:
-                                container.Constraints.Add(parseConstraint(reader));
+                                var result = parseConstraint(reader);
+                                if (result is IRangeConstraint)
+                                { 
+                                    container.RangeConstraints.Add(result as IRangeConstraint);
+                                }
+                                else if (result is IConstraint)
+                                {
+                                    container.Constraints.Add(result as IConstraint);
+                                }
+                                else
+                                {
+                                    throw new InvalidOperationException("Bad constraint in XML! ");
+                                }
                                 break;
                             default:
                                 break;
@@ -58,7 +70,7 @@ namespace Assets.Scripts.General
             return container;
         }
 
-        private IRangeConstraint parseConstraint(XmlReader reader)
+        private object parseConstraint(XmlReader reader)
         {
             Type constType;
 
@@ -66,27 +78,47 @@ namespace Assets.Scripts.General
             constType = Type.GetType(Constants.ASSEMBLY_CONSTRAINT_PATH + constEle.Value.Trim('\t', '\r', '\n'));
             XmlSerializer serializer = new XmlSerializer(constType);
 
-            return serializer.Deserialize(reader) as IRangeConstraint;
+            return serializer.Deserialize(reader);
         }
 
-        public Dictionary<Type, RangeConstraintManager> GenerateSignConstraints()
+        public Dictionary<Type, RangeConstraintManager> GenerateSignRangeConstraints()
         {
             // Define number of managers
             var managers = new Dictionary<Type, RangeConstraintManager>();
+
+            _data.RangeConstraints.ForEach(constraint => AddNewRangeConstraint(managers, constraint));
+
+            return managers;
+        }
+
+        public Dictionary<Type, ConstraintManager> GenerateSignConstraints()
+        {
+            // Define number of managers
+            var managers = new Dictionary<Type, ConstraintManager>();
 
             _data.Constraints.ForEach(constraint => AddNewConstraint(managers, constraint));
 
             return managers;
         }
 
-        //public List<Sidewalk>(){}
-
-        private bool AddNewConstraint(Dictionary<Type, RangeConstraintManager> managers, IRangeConstraint constraint)
+        private bool AddNewConstraint(Dictionary<Type, ConstraintManager> managers, IConstraint constraint)
         {
             // First, check if a mananger exists for this type of constraint. If not, create a new one
             if (!managers.ContainsKey(constraint.GetType()))
             {
-                managers.Add(constraint.GetType(), RangeConstraintMangerFactory.getManager(constraint.GetType()));
+                managers.Add(constraint.GetType(), ConstraintMangerFactory.getManager(constraint.GetType()));
+            }
+
+            // Add new constraint
+            return managers[constraint.GetType()].tryAddConstraint(constraint);
+        }
+
+        private bool AddNewRangeConstraint(Dictionary<Type, RangeConstraintManager> managers, IRangeConstraint constraint)
+        {
+            // First, check if a mananger exists for this type of constraint. If not, create a new one
+            if (!managers.ContainsKey(constraint.GetType()))
+            {
+                managers.Add(constraint.GetType(), ConstraintMangerFactory.getRangeManager(constraint.GetType()));
             }
 
             // Add new constraint

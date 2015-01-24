@@ -21,15 +21,7 @@ namespace Assets.Scripts.Constraints
         {
            
         }
-        public override GameRangeAttribute range
-        {
-            protected set
-            {
-                base.range = value;
-                base.range.max += (int)Convert.ChangeType(UserInput.GetUserDayOfWeek(), UserInput.GetUserDayOfWeek().GetTypeCode()) % 7;
-                base.range.min += (int)Convert.ChangeType(UserInput.GetUserDayOfWeek(), UserInput.GetUserDayOfWeek().GetTypeCode()) % 7;
-            }
-        }
+
         public override bool collides(IRangeConstraint other)
         {
             return IsIntersecting((long)range.min, (long)range.max, (long)other.range.min, (long)other.range.max);
@@ -37,7 +29,7 @@ namespace Assets.Scripts.Constraints
 
         public override string ToString()
         {
-            return ((isConAllowed) ? ("May") : ("May not")) + String.Format(" park between {0} and {1}",
+            return "A car " + ((isConAllowed) ? ("May") : ("May not")) + String.Format(" park between {0} and {1}",
                                                             Enum.GetName(typeof(DayOfWeek), (int) range.min),
                                                             Enum.GetName(typeof(DayOfWeek), (int) range.max));
         }
@@ -63,6 +55,15 @@ namespace Assets.Scripts.Constraints
                 // Not in range, return not allowed flag
                 return !isConAllowed;
             }
+        }
+
+        protected override void calculateOffset()
+        {
+            int offset = (int)Convert.ChangeType(UserInput.GetUserDayOfWeek(), UserInput.GetUserDayOfWeek().GetTypeCode());
+            // TODO: Days of the week
+            int cycle = 7;
+            this.range.max = (this.range.max + offset) % cycle;
+            this.range.min = (this.range.min + offset) % cycle;
         }
     }
 }

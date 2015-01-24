@@ -2,61 +2,46 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.General;
+using Assets.UI;
+using Assets.Scripts.Generators;
 
 namespace Assets.Scripts.Constraints
 {
     public class UserInput : MonoBehaviour
     {
-        static List<IConstraint> sidewalkConstraints;
+        public MakeTime userTime;
+
+        private static MakeTime s_makeTime;
 
         void Awake()
         {
-            sidewalkConstraints = new List<IConstraint>();
-            sidewalkConstraints.Add(new ColorConstraint(true, General.Constants.CarColor.BLUE));
-            sidewalkConstraints.Add(new ColorConstraint(true, General.Constants.CarColor.RED));
-            sidewalkConstraints.Add(new ColorConstraint(true, General.Constants.CarColor.GREEN));
-        }
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            s_makeTime = userTime;
         }
 
         public static long GetUserTime()
         {
-            return 0;
+            return MakeTime.gameDateTime.Ticks;
         }
 
         public static DayOfWeek GetUserDayOfWeek()
         {
-            return DayOfWeek.Saturday;
+            return MakeTime.gameDateTime.DayOfWeek;
         }
 
         public static int GetUserHour()
         {
-            return 0;
+            return MakeTime.gameDateTime.Hour;
         }
 
-        internal static Assets.Scripts.General.Constants.CarColor GetCarColor()
+        internal static Constants.CarColor GetCarColor()
         {
-            return Assets.Scripts.General.Constants.CarColor.BLUE;
+            return CarColorWrapper.GetCarColor();
         }
 
-        internal static IConstraint GetSidewalkConstraint(int index)
+        internal static bool IsHolidayNow(string holiday)
         {
-            return sidewalkConstraints[index % sidewalkConstraints.Count];
-        }
-
-        internal static bool IsHolidayNow(string p)
-        {
-            return false;
+            return CalendarWrapper.IsHolidayNow(holiday, MakeTime.gameDateTime.Day);
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Assets.Scripts.Constraints.Generators
             // First, check if a mananger exists for this type of constraint. If not, create a new one
             if (!managers.ContainsKey(constraint.GetType()))
             {
-                managers.Add(constraint.GetType(), RangeConstraintMangerFactory.getManager(constraint.GetType()));
+                managers.Add(constraint.GetType(), ConstraintMangerFactory.getRangeManager(constraint.GetType()));
             }
 
             // Add new constraint

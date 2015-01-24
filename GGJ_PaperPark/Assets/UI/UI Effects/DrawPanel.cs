@@ -11,12 +11,7 @@ public class DrawPanel : MonoBehaviour {
 
 	private RectTransform rectTransform;
 
-
-	void Awake()
-	{
-		NameIntPair.ShufflePair (GameData.PavementType,5);
-
-	}
+	
 	void Start()
 	{
 		rectTransform = GetComponent<RectTransform>();

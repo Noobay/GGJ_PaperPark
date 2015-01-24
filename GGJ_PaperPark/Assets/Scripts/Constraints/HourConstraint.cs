@@ -17,16 +17,6 @@ namespace Assets.Scripts.Constraints
 
         }
 
-        public override GameRangeAttribute range
-        {
-            protected set
-            {
-                base.range = value;
-                base.range.max += UserInput.GetUserHour() % 24;
-                base.range.min += UserInput.GetUserHour() % 24;
-            }
-        }
-
         public HourConstraint() 
         {
 
@@ -34,12 +24,13 @@ namespace Assets.Scripts.Constraints
 
         public override bool collides(IRangeConstraint other)
         {
-            throw new NotImplementedException();
+            // TODO In the future when things are generated and pigs eat Tom's ass
+            return false;
         }
 
         public override string ToString()
         {
-            return ((isConAllowed) ? ("May") : ("May not")) + String.Format(" park between {0}:00 and {1}:00",
+            return "A car " + ((isConAllowed) ? ("May") : ("May not")) + String.Format(" park between {0}:00 and {1}:00",
                                                             range.min,
                                                             range.max);
         }
@@ -67,6 +58,16 @@ namespace Assets.Scripts.Constraints
                 // Opposite of the above
                 return !isConAllowed;
             }
+        }
+
+        protected override void calculateOffset()
+        {
+            int offset = UserInput.GetUserHour();
+
+            // TODO: Hours of the day
+            int cycle = 24;
+            this.range.max = (this.range.max + offset) % cycle;
+            this.range.min = (this.range.min + offset) % cycle;
         }
     }
 }
