@@ -20,10 +20,13 @@ public class MakeTime : MonoBehaviour {
 
 	public static System.DateTime gameDateTime;
 
-	public static MakeTime mTime;
-	void Awake()
+	CalendarGenerator gCalendar;
+
+	void Start()
 	{
-		mTime = this;
+		Initialize();
+		gCalendar = GetComponent<CalendarGenerator>();
+		gCalendar.GenerateCurrentMonthInfo();
 	}
 	// Use this for initialization
 	void Initialize()
@@ -37,8 +40,9 @@ public class MakeTime : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void UpdateTime ()
+	void Update()
 	{
+
 		gameDateTime = gameDateTime.AddSeconds(Time.deltaTime*gameTimeScale);
 
 		hourSecondText.text = string.Format (hourSeconds , gameDateTime);
