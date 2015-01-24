@@ -1,7 +1,4 @@
-﻿using System.Collections;
-
-
-public static class GameData
+﻿public static class GameData
 {
 
 		public static readonly string[] holidayNames = {"Prickle-Prickle", "Quansa", "Disco Day","Cheese Waffle Mayhem"};
@@ -29,7 +26,6 @@ public static class GameData
 				new NameIntPair("Purple/White",0),
 				new NameIntPair("Brown/Yellow",0)
 			};
-
 		}
 
 }
