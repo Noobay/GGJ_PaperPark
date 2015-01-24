@@ -10,7 +10,7 @@ namespace Assets.Scripts.Constraints
 {
     public class ParkingScene : MonoBehaviour
     {
-        public int level = 1;
+        public int level;
 
         private Dictionary<Type, RangeConstraintManager> _rangeManagers;
         private Dictionary<Type, ConstraintManager> _managers;
@@ -19,13 +19,25 @@ namespace Assets.Scripts.Constraints
 
         void Awake()
         {
+            loadSceneData();
+        }
+
+        void Start()
+        {
+        }
+
+        private void loadSceneData()
+        {
             reader = new ConstraintFileReader(Constants.XML_SCENE_DIR + level + ".xml");
             _rangeManagers = reader.GenerateSignRangeConstraints();
             _managers = reader.GenerateSignConstraints();
         }
 
-        void Start()
+        public void requestNewSceneData()
         {
+            // Increase level counter and load new level
+            level++;
+            loadSceneData();
         }
 
         public bool validateUserInputByConstraints()
