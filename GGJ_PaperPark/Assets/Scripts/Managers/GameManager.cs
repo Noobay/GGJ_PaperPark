@@ -12,12 +12,13 @@ public class GameManager : MonoBehaviour {
 	void Start()
 	{	
 		sign = GetComponent<Sign>();
+		signInfo.text = string.Empty;
 
 		List<string> stringConstraints = sign.getConstraintsToString();
 
 		for(short i=0;i<stringConstraints.Count;i++)
 		{
-			signInfo.text = stringConstraints[i];
+			signInfo.text += stringConstraints[i];
 		}
 
 
