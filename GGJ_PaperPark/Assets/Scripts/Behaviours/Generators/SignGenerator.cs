@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Random = UnityEngine.Random;
+using Assets.Scripts.General;
 
 namespace Assets.Scripts.Constraints.Generators
 {
@@ -50,8 +51,8 @@ namespace Assets.Scripts.Constraints.Generators
 
             // TODO Static shit. Change in the future
             return new WeeklyConstraint(false,
-                       new RangeAttribute((int)Convert.ChangeType(DayOfWeek.Tuesday, DayOfWeek.Tuesday.GetTypeCode()),
-                                          (int)Convert.ChangeType(DayOfWeek.Thursday, DayOfWeek.Thursday.GetTypeCode())));
+                       new GameRangeAttribute((int)Convert.ChangeType(DayOfWeek.Tuesday, DayOfWeek.Tuesday.GetTypeCode()),
+                                              (int)Convert.ChangeType(DayOfWeek.Thursday, DayOfWeek.Thursday.GetTypeCode())));
         }
 
         private bool AddNewConstraint(Dictionary<Type, RangeConstraintManager> managers, IRangeConstraint constraint)

@@ -10,11 +10,11 @@ namespace Assets.Scripts.Constraints
         public HourConstraintManager()
             : base(typeof(HourConstraint))
         {
-
         }
+
         public override bool validateUserInputByConstraints()
         {
-            throw new NotImplementedException();
+            return constraintsList.TrueForAll(x => x.isUserInputLegal(UserInput.GetUserHour()));
         }
     }
 }
