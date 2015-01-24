@@ -6,6 +6,8 @@ using Assets.Scripts.Constraints;
 
 public class GameManager : MonoBehaviour {
 
+	public Transform playerSpawn;
+
 	ParkingScene sign;
 	public Text signInfo;
 	// Update is called once per frame
@@ -23,4 +25,11 @@ public class GameManager : MonoBehaviour {
 
 
 	}
+
+
+	void InitializePlayer()
+	{
+	
+	}
+
 }

@@ -1,21 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.Scripts.General;
+using Assets.Scripts.Constraints;
+using UnityEngine.UI;
 
 public class ParkValidator : MonoBehaviour {
 	
-	public ParkingSceneData psd;
+	public ParkingScene psd;
+
+	private Button button;
 
 	// Use this for initialization
 	void Start () {
 
-		psd = new ParkingSceneData();
+		psd = new ParkingScene();
 
+		button = GetComponent<Button>();
+		button.onClick.AddListener(ActUponDecision);
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	public void ActUponDecision()
+	{
+		if(psd.validateUserInputByConstraints())
+		{
+			psd.requestNewSceneData();	
+		}
+		PlayerFailure();
+	}
+
+	void PlayerFailure()
+	{
+		//TODO: Play some animations
+		psd.requestNewSceneData();
 	}
 }
