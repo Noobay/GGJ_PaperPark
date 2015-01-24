@@ -34,12 +34,13 @@ namespace Assets.Scripts.Constraints
 
         public override bool collides(IRangeConstraint other)
         {
-            throw new NotImplementedException();
+            // TODO In the future when things are generated and pigs eat Tom's ass
+            return false;
         }
 
         public override string ToString()
         {
-            return ((isConAllowed) ? ("May") : ("May not")) + String.Format(" park between {0}:00 and {1}:00",
+            return "A car " + ((isConAllowed) ? ("May") : ("May not")) + String.Format(" park between {0}:00 and {1}:00",
                                                             range.min,
                                                             range.max);
         }

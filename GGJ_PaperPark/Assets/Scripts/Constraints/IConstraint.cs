@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.Scripts.Constraints
 {
-    interface IConstraint
+    public interface IConstraint
     {
         bool isUserInputLegal(params object[] inputs);
         bool isConAllowed { get; }

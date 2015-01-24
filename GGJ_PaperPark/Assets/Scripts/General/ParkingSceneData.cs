@@ -7,11 +7,13 @@ using System.Xml.Serialization;
 
 namespace Assets.Scripts.General
 {
-    [XmlRoot(Constants.PARKING_SCENE_XML)]
+    //[XmlRoot(Constants.PARKING_SCENE_XML)]
     public class ParkingSceneData
     {
-        [XmlArray(Constants.LIST_CONSTRAINT_XML)]
-        [XmlArrayItem((Constants.CONSTRAINT_XML))]
-        public List<IRangeConstraint> Constraints = new List<IRangeConstraint>();
+        //[XmlArray(Constants.LIST_CONSTRAINT_XML)]
+        //[XmlArrayItem((Constants.CONSTRAINT_XML))]
+        public List<IRangeConstraint> RangeConstraints = new List<IRangeConstraint>();
+
+        public List<IConstraint> Constraints = new List<IConstraint>();
     }
 }

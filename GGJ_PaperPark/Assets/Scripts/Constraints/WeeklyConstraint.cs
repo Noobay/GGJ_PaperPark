@@ -37,7 +37,7 @@ namespace Assets.Scripts.Constraints
 
         public override string ToString()
         {
-            return ((isConAllowed) ? ("May") : ("May not")) + String.Format(" park between {0} and {1}",
+            return "A car " + ((isConAllowed) ? ("May") : ("May not")) + String.Format(" park between {0} and {1}",
                                                             Enum.GetName(typeof(DayOfWeek), (int) range.min),
                                                             Enum.GetName(typeof(DayOfWeek), (int) range.max));
         }

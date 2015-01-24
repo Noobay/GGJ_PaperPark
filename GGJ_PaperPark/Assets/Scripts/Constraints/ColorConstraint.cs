@@ -11,7 +11,7 @@ namespace Assets.Scripts.Constraints
     public class ColorConstraint : IConstraint
     {
         [XmlAttribute(Constants.CAR_COLOR_XML)]
-        string color;
+        public string color { get; private set; }
 
         [XmlAttribute(Constants.ALLOWED_XML)]
         public bool isConAllowed { get; private set; }
@@ -23,7 +23,7 @@ namespace Assets.Scripts.Constraints
 
         public override string ToString()
         {
-            return ("Cars of the color " + this.color.ToString() + " " + 
+            return ("Cars of the color " + this.color + " " + 
                     ((isConAllowed) ? ("May") : ("May not")) + 
                     (" park in this spot."));
         }
