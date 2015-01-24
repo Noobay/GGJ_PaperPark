@@ -3,9 +3,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Constraints;
+using Assets.UI;
 
 public class GameManager : MonoBehaviour {
 
+	public Sprite[] CarSprites;
 	public Transform playerSpawn;
 
 	ParkingScene sign;
@@ -15,6 +17,8 @@ public class GameManager : MonoBehaviour {
 	{	
 		sign = GetComponent<ParkingScene>();
 		signInfo.text = string.Empty;
+
+		InitializePlayer();
 
 		List<string> stringConstraints = sign.getConstraintsToString();
 
@@ -27,9 +31,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 
+
 	void InitializePlayer()
 	{
-	
+		Instantiate(CarSprites[(int)CarColorWrapper.GetCarColor()], ;
 	}
 
 }
