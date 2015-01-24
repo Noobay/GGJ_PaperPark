@@ -27,7 +27,7 @@ public class CalendarGenerator : MonoBehaviour {
         DateTimeFormatInfo dtfi = DateTimeFormatInfo.CurrentInfo;
         monthText.text = dtfi.MonthNames[MakeTime.gameDateTime.Month];
 
-        holidays = CalendarWrapper.GenerateDayPairs();
+        holidays = CalendarWrapper.GetHolidayDates();
 
         List<NameIntPair> holidaysToWrite = new List<NameIntPair>();
 
