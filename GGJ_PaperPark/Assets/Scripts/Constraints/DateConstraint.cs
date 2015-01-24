@@ -57,5 +57,10 @@ namespace Assets.Scripts.Constraints
                 return !isConAllowed;
             }
         }
+
+        protected override void calculateOffset()
+        {
+            // EMPTY!!!!!
+        }
     }
 }

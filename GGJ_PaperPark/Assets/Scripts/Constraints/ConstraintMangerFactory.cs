@@ -27,7 +27,8 @@ namespace Assets.Scripts.Constraints
 
             // Available managers
             _ConstraintManagersDict.Add(typeof(HolidayConstraint), typeof(HolidayConstraintManager));
-            _ConstraintManagersDict.Add(typeof(ColorConstraint), typeof(SidewalkConstraintManager));
+            _ConstraintManagersDict.Add(typeof(SidewalkConstraint), typeof(SidewalkConstraintManager));
+            _ConstraintManagersDict.Add(typeof(ColorConstraint), typeof(ColorConstraintManager));
         }
 
         public static RangeConstraintManager getRangeManager(Type constraintType)

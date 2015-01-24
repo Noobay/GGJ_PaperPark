@@ -55,6 +55,10 @@ namespace Assets.Scripts.General
                                 {
                                     container.Constraints.Add(result as IConstraint);
                                 }
+                                else
+                                {
+                                    throw new InvalidOperationException("Bad constraint in XML! ");
+                                }
                                 break;
                             default:
                                 break;

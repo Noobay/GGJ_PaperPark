@@ -9,12 +9,26 @@ namespace Assets.Scripts.Constraints
     [XmlRoot(Constants.CONSTRAINT_XML)]
     public abstract class RangeConstraint<T> : IRangeConstraint
     {
+        [XmlIgnore]
+        private GameRangeAttribute myVar;
+
         [XmlAttribute(Constants.TYPE_CONSTRAINT_XML)]
         private Type classType { get {return this.GetType();} }
         [XmlElement(Constants.RANGE_XML)]
-        public virtual GameRangeAttribute range { get; protected set; }
+        public GameRangeAttribute range
+        {
+            get { return myVar; }
+            protected set
+            {
+                myVar = value;
+                calculateOffset();
+            }
+        }
+
         [XmlAttribute(Constants.ALLOWED_XML)]
         public bool isConAllowed { get; private set; }
+
+        protected abstract void calculateOffset();
 
         public RangeConstraint(bool isConAllowed, GameRangeAttribute range)
         {
