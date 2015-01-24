@@ -1,8 +1,12 @@
  <ParkingScene>
- 	<ListConstraint>
+	<ListConstraint>
+		<ConstraintType>
+		SidewalkConstraint
+		</ConstraintType>
+		<Constraint colorId="3"/>
 		<ConstraintType>
 		HolidayConstraint
 		</ConstraintType>
- 		<Constraint allowed="true" holiday="Quansa"/>
- 	</ListConstraint>
- </ParkingScene>
+		<Constraint allowed="true" holiday="Quansa"/>
+	</ListConstraint>
+</ParkingScene>
