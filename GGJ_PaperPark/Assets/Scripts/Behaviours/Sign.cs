@@ -59,10 +59,18 @@ namespace Assets.Scripts.Constraints
         public List<string> getConstraintsToString()
         {
             List<string> result = new List<string>();
-            List<RangeConstraintManager> _managers = new List<RangeConstraintManager>(_rangeManagers.Values);
-            for (int i = 0; i < _managers.Count; i++)
+            List<RangeConstraintManager> rangeManagers = new List<RangeConstraintManager>(_rangeManagers.Values);
+            List<ConstraintManager> managers = new List<ConstraintManager>(_managers.Values);
+
+            // Get all strings from all constraints
+            for (int i = 0; i < rangeManagers.Count; i++)
             {
-                result.AddRange(_managers[i].getConstraintsToString());
+                result.AddRange(rangeManagers[i].getConstraintsToString());
+            }
+
+            for (int i = 0; i < managers.Count; i++)
+            {
+                result.AddRange(managers[i].getConstraintsToString());
             }
 
             return result;

@@ -11,10 +11,32 @@ namespace Assets.Scripts.Constraints
     public class SidewalkConstraint : IConstraint
     {
         [XmlIgnore]
+        private int sideColorIndexField;
+
+        [XmlIgnore]
         public bool isConAllowed { get; private set; } // Not is use
 
         [XmlAttribute(Constants.SIDEWALK_COLOR_XML)]
-        public int sideColorIndex { get; private set; }
+        public int sideColorIndex
+        {
+            get
+            {
+                return sideColorIndexField; 
+            }
+            private set
+            {
+                // First, set index
+                sideColorIndexField = value;
+
+                // Now, get constraint by the index, then generate its manager
+                IConstraint constraint = Constants.GetSidewalkConstraint(sideColorIndex);
+                referencedConstraintManager = ConstraintMangerFactory.getManager(constraint.GetType());
+                referencedConstraintManager.tryAddConstraint(constraint);
+            }
+        }
+
+        [XmlIgnore]
+        private ConstraintManager referencedConstraintManager { get; set; }
         
         public SidewalkConstraint(int index)
         {
@@ -28,10 +50,17 @@ namespace Assets.Scripts.Constraints
         {
             // Generate a constraint and its manager by the index of the constraint. Get validity
             // Manager is used to give input to the constraint
-            IConstraint constraint = Constants.GetSidewalkConstraint(sideColorIndex);
-            ConstraintManager manager = ConstraintMangerFactory.getManager(constraint.GetType());
-            manager.tryAddConstraint(constraint);
-            return manager.validateUserInputByConstraints();
+
+            return referencedConstraintManager.validateUserInputByConstraints();
+        }
+
+        public override string ToString()
+        {
+            // Has to be only one constraint in the manager
+            //return referencedConstraintManager.getConstraintsToString().FirstOrDefault();
+
+            // This is empty because it's top secret!!
+            return string.Empty;
         }
     }
 }
