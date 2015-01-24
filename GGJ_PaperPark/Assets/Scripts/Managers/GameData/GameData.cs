@@ -2,14 +2,14 @@
 {
 
 		public static readonly string[] holidayNames = {"Prickle-Prickle", "Quansa", "Disco Day","Cheese Waffle Mayhem"};
-		public static readonly NameIntPair[] NameLengthPairs;
+		public static readonly NameIntPair[] HolidayNameLengthPairs;
 			
 
 		public static NameIntPair[] PavementType;
-
+		
 		static GameData()
 		{
-			NameLengthPairs = new NameIntPair[] 
+			HolidayNameLengthPairs = new NameIntPair[] 
 			{
 				new NameIntPair(holidayNames[0],       5),
 				new NameIntPair(holidayNames[1],       8),
