@@ -15,7 +15,7 @@ namespace Assets.Scripts.Constraints
 
         public override bool validateUserInputByConstraints()
         {
-            throw new NotImplementedException();
+			return constraintsList.TrueForAll(x => x.isUserInputLegal());
         }
     }
 }

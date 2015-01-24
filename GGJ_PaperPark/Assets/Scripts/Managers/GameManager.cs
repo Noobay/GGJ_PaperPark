@@ -8,33 +8,49 @@ using Assets.UI;
 public class GameManager : MonoBehaviour {
 
 	public Sprite[] CarSprites;
-	public Transform playerSpawn;
+	public Sprite[] Pavements;
+	public Image playerSpawn;
 
-	ParkingScene sign;
+	public Image sceneImage;
+
+	private GameObject tempObject;
+	private List<string> stringConstraints;
+
+	private ParkingScene sign;
 	public Text signInfo;
-	// Update is called once per frame
+
 	void Start()
 	{	
 		sign = GetComponent<ParkingScene>();
 		signInfo.text = string.Empty;
 
+		CreateNewScene ();
+
+		stringConstraints = sign.getConstraintsToString();
+		
+	}
+
+
+	public void CreateNewScene()
+	{
+
+		sceneImage.sprite = Pavements[sign.getSidewalkIndex()];
+	
 		InitializePlayer();
-
-		List<string> stringConstraints = sign.getConstraintsToString();
-
+		GetConstraintsToText();
+	}
+	void InitializePlayer()
+	{
+		playerSpawn.sprite = CarSprites[(int)CarColorWrapper.GetCarColor()];
+		
+	}
+	void GetConstraintsToText()
+	{
+		signInfo.text = string.Empty;
+		stringConstraints = sign.getConstraintsToString();
 		for(short i=0;i<stringConstraints.Count;i++)
 		{
 			signInfo.text += stringConstraints[i];
-		}
-
-
+		}		
 	}
-
-
-
-	void InitializePlayer()
-	{
-		Instantiate(CarSprites[(int)CarColorWrapper.GetCarColor()], ;
-	}
-
 }

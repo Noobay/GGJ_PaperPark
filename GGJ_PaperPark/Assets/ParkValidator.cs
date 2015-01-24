@@ -9,10 +9,12 @@ public class ParkValidator : MonoBehaviour {
 
 	private Button button;
 
+	public Text ValidateResult;
+
+	public GameManager gMan;
+
 	// Use this for initialization
 	void Start () {
-
-		psd = new ParkingScene();
 
 		button = GetComponent<Button>();
 		button.onClick.AddListener(ActUponDecision);
@@ -24,14 +26,21 @@ public class ParkValidator : MonoBehaviour {
 	{
 		if(psd.validateUserInputByConstraints())
 		{
-			psd.requestNewSceneData();	
+			ValidateResult.text = "You are able to park here!";
 		}
-		PlayerFailure();
+		else
+		{
+			ValidateResult.text = "You are ERROR!";
+			PlayerFailure();
+		}
+		psd.requestNewSceneData();
+		gMan.CreateNewScene();
 	}
+
 
 	void PlayerFailure()
 	{
 		//TODO: Play some animations
-		psd.requestNewSceneData();
+
 	}
 }

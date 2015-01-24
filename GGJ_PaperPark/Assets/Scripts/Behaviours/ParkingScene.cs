@@ -10,23 +10,23 @@ namespace Assets.Scripts.Constraints
 {
     public class ParkingScene : MonoBehaviour
     {
-        public int level;
+        public static int level = 1;
 
         private Dictionary<Type, RangeConstraintManager> _rangeManagers;
         private Dictionary<Type, ConstraintManager> _managers;
         private ConstraintFileReader reader;
         //public SignGenerator generator; // Configure in Unity Editor an instance of sign generator
 
-        void Awake()
+        public ParkingScene()
         {
             loadSceneData();
         }
 
         void Start()
         {
-        }
-
-        private void loadSceneData()
+		}
+		
+		private void loadSceneData()
         {
             reader = new ConstraintFileReader(Constants.XML_SCENE_DIR + level + ".xml");
             _rangeManagers = reader.GenerateSignRangeConstraints();

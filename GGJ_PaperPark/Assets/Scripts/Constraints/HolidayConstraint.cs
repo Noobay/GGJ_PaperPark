@@ -26,6 +26,8 @@ namespace Assets.Scripts.Constraints
 
         public bool isUserInputLegal(params object[] inputs)
         {
+			try
+			{
             if (inputs == null || !(inputs[0] is string))
             {
                 return false;
@@ -39,6 +41,11 @@ namespace Assets.Scripts.Constraints
             {
                 return !isConAllowed;
             }
+			}catch
+			{
+				return false;
+			}
+
         }
 
         public override string ToString()
