@@ -10,17 +10,17 @@ namespace Assets.Scripts.Constraints
 {
     public class Sign : MonoBehaviour
     {
-        // TODO: Debug!!!
-        static int level = 1;
+        public int level = 1;
 
-        private Dictionary<Type, RangeConstraintManager> managers;
+        private Dictionary<Type, RangeConstraintManager> rangeManagers;
+        private Dictionary<Type, ConstraintManager> managers;
         private ConstraintFileReader reader;
         //public SignGenerator generator; // Configure in Unity Editor an instance of sign generator
 
         void Awake()
         {
             reader = new ConstraintFileReader(Constants.XML_SCENE_DIR + level + ".xml");
-            //managers = generator.GenerateSignConstraints();
+            rangeManagers = reader.GenerateSignRangeConstraints();
             managers = reader.GenerateSignConstraints();
         }
 
@@ -37,7 +37,7 @@ namespace Assets.Scripts.Constraints
 
         public bool validateUserInputByConstraints()
         {
-            List<RangeConstraintManager> _managers = new List < RangeConstraintManager > (managers.Values);
+            List<RangeConstraintManager> _managers = new List <RangeConstraintManager> (rangeManagers.Values);
             for (int i = 0; i < _managers.Count; i++)
             {
                 if(!_managers[i].validateUserInputByConstraints())
@@ -52,7 +52,7 @@ namespace Assets.Scripts.Constraints
         public List<string> getConstraintsToString()
         {
             List<string> result = new List<string>();
-            List<RangeConstraintManager> _managers = new List<RangeConstraintManager>(managers.Values);
+            List<RangeConstraintManager> _managers = new List<RangeConstraintManager>(rangeManagers.Values);
             for (int i = 0; i < _managers.Count; i++)
             {
                 result.AddRange(_managers[i].getConstraintsToString());
