@@ -1,0 +1,8 @@
+ <ParkingScene>
+ 	<ListConstraint>
+		<ConstraintType>
+		HolidayConstraint
+		</ConstraintType>
+ 		<Constraint allowed="true" holiday="Quansa"/>
+ 	</ListConstraint>
+ </ParkingScene>
