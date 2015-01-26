@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Assets.Scripts.Constraints
@@ -15,7 +14,6 @@ namespace Assets.Scripts.Constraints
             constraintsList = new List<IConstraint>();
             this.ConstraintType = constraintType;
         }
-
         public bool tryAddConstraint(IConstraint constraint)
         {
             // Check if new constraint is of this manager's type and fits the other constraints

@@ -27,8 +27,8 @@ namespace Assets.Scripts.Constraints
 		}
 		
 		private void loadSceneData()
-        {
-            reader = new ConstraintFileReader(Constants.XML_SCENE_DIR + level + ".xml");
+        {	
+            reader = new ConstraintFileReader(System.IO.Path.Combine (Constants.XML_SCENE_DIR, level + ".xml"));
             _rangeManagers = reader.GenerateSignRangeConstraints();
             _managers = reader.GenerateSignConstraints();
         }

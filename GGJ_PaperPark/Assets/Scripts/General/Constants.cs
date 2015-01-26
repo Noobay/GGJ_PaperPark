@@ -44,7 +44,7 @@ namespace Assets.Scripts.General
         public const int DAYS_IN_WEEK = 7;
 
         // Scenes data path
-        public const string XML_SCENE_DIR = @"Assets/Resources/ParkingSceneData/";
+        public static string XML_SCENE_DIR = System.IO.Path.Combine (UnityEngine.Application.streamingAssetsPath, "ParkingSceneData");
 
         // Temp constants
         public const string ASSEMBLY_CONSTRAINT_PATH = "Assets.Scripts.Constraints.";
