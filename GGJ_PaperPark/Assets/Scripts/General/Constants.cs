@@ -45,7 +45,6 @@ namespace Assets.Scripts.General
 
         // Scenes data path
         public static string XML_SCENE_DIR = System.IO.Path.Combine (UnityEngine.Application.streamingAssetsPath, "ParkingSceneData");
-
         // Temp constants
         public const string ASSEMBLY_CONSTRAINT_PATH = "Assets.Scripts.Constraints.";
 

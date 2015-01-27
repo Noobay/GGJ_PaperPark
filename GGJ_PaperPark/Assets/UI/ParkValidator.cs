@@ -15,37 +15,70 @@ public class ParkValidator : MonoBehaviour {
 
 	public Animator WinAnimator, LoseAnimator;
 
+
+	public float pitchChange = 0.1f;
+
+	private AudioSource audSource;
+	private float pitch;
 	// Use this for initialization
 	void Start () {
-
+	
+		audSource = GetComponent<AudioSource>();
 		button = GetComponent<Button>();
-		button.onClick.AddListener(ActUponDecision);
-
+	
+		pitch = audSource.pitch;
 	}
 	
 	// Update is called once per frame
-	public void ActUponDecision()
+	public void ActUponDecision(bool decision)
 	{
-		if(psd.validateUserInputByConstraints())
-		{
-			WinAnimator.SetTrigger ("Win");
-			ValidateResult.text = "You are able to park here!";
+		try{
+			if(psd.validateUserInputByConstraints() == decision)
+			{
+
+				ValidateResult.text = "You are able to park here!";
+				PlayerWin ();
+			}
+			else
+			{
+				ValidateResult.text = "You are ERROR!";
+				PlayerFailure();
+			}
+
+			ResetScene();
 		}
-		else
-		{
-			ValidateResult.text = "You are ERROR!";
-			PlayerFailure();
+		catch (System.IO.FileNotFoundException e)
+		{			
+			ValidateResult.text = "No more levels to load";
 		}
+	}
+
+	private void SetPitch(float pitchDiff)
+	{
+		pitch += pitchDiff;
+		pitch = Mathf.Clamp(pitch,0.1f,1f);
+		audSource.pitch = pitch;
+	}
+	private void ResetScene()
+	{
 		psd.requestNewSceneData();
 		gMan.CreateNewScene();
 	}
 
-
-	void PlayerFailure()
+	private void PlayerFailure()
 	{
 
-		//TODO: Play some animations
+		//TODO: Play some animations, lower score
 		LoseAnimator.SetTrigger ("Lose");
+		SetPitch (-pitchChange);
 
+	}
+	private void PlayerWin()
+	{
+		
+		//TODO: Play some animations, lower score
+		WinAnimator.SetTrigger ("Win");
+		SetPitch (pitchChange);
+		
 	}
 }

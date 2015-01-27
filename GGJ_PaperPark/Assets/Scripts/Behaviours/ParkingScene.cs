@@ -21,10 +21,6 @@ namespace Assets.Scripts.Constraints
         {
             loadSceneData();
         }
-
-        void Start()
-        {
-		}
 		
 		private void loadSceneData()
         {	

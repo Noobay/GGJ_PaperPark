@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class FlipPage : MonoBehaviour {
 
-	public  float drawAngle;
 	public  float drawSpeed;
 
 	private Quaternion baseRotation;
@@ -20,19 +19,21 @@ public class FlipPage : MonoBehaviour {
 
 
 
-	void DrawDown(float distance)
+	public void Draw()
 	{
 		rectTransform.rotation = Quaternion.Euler(baseRotation.eulerAngles.x, DragDrawerBy(Input.GetAxis("Mouse X")*drawSpeed),baseRotation.eulerAngles.z);
 	}
 
 	float DragDrawerBy(float by)
 	{
-		return (by+rectTransform.rotation.eulerAngles.y);
+		float angle = 0f;
+		float dragAmount = by+rectTransform.eulerAngles.y;
+
+		angle = Mathf.Clamp (dragAmount,0f,180f);
+
+		return angle;
 	}
-	public void DrawDrawer()
-	{
-		DrawDown (drawAngle);
-	}
+
 
 
 

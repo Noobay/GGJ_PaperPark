@@ -32,7 +32,7 @@ namespace Assets.Scripts.General
         //}
 
         private ParkingSceneData ReadConstraint(string path)
-        {
+        {	 
             var container = new ParkingSceneData();
 
             using (XmlReader reader = XmlReader.Create(path))
